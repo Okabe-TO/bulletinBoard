@@ -1,0 +1,17 @@
+.App {
+	background-color: antiquewhite;
+	min-height: 100vh;
+}
+
+.Header {
+	background-color: aquamarine;
+	text-align: center;
+}
+
+.ThreadName {
+	font-size: x-large
+}
+
+.Thread {
+	padding: 5%;
+}
