@@ -1,14 +1,16 @@
 import './App.css';
 import React from 'react';
 import Header from './Header';
-import Thread from './Thread';
+import ThreadList from './ThreadList';
 
 function App() {
 
   return (
 		<div className='App'>
 			< Header />
-			< Thread />
+			<div className='Thread-container'>
+				< ThreadList />
+			</div>
 		</div>
   );
 }

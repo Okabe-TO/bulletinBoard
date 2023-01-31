@@ -11,7 +11,21 @@
 .ThreadName {
 	font-size: x-large
 }
-
-.Thread {
-	padding: 5%;
+.Thread-container {
+	text-align: center;
 }
+
+.ThreadTitle {
+	font-size: large;
+	padding: 3%;
+}
+
+ul {
+	list-style-type: none;
+}
+
+li {
+	border: 3px solid;
+	margin: 5px;
+}
+
