@@ -1,5 +1,10 @@
 .App {
-	background-color: antiquewhite;
+  text-align: center;
+}
+
+.Home {
+  text-align: center;
+  background-color: antiquewhite;
 	min-height: 100vh;
 }
 
@@ -8,24 +13,49 @@
 	text-align: center;
 }
 
-.ThreadName {
-	font-size: x-large
-}
-.Thread-container {
-	text-align: center;
+.ThreadTitle {
+	font-size: 30px;
+	padding: 3%;
 }
 
-.ThreadTitle {
-	font-size: large;
-	padding: 3%;
+.ThreadList {
+  left: 50px;
 }
 
 ul {
 	list-style-type: none;
+  margin-left: 30%;
 }
 
 li {
+  background-color: #ffff;
 	border: 3px solid;
 	margin: 5px;
+  width: 50%;
+  word-wrap: break-word;
 }
 
+input {
+  padding: 1%;
+  margin: 1%;
+}
+
+span {
+  margin: 3%;
+}
+
+.Content-wrapper {
+  position: absolute;
+  right: 1%;
+  width: 30%;
+}
+
+textarea {
+  height: 100px;
+  width: 100%;
+}
+
+.ThreadButton {
+  height: 50px;
+  width: 100%;
+}
