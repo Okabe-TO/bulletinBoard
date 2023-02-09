@@ -22,17 +22,29 @@
   left: 50px;
 }
 
-ul {
+.Home-ul {
 	list-style-type: none;
   margin-left: 30%;
 }
 
-li {
+.Home-li {
   background-color: #ffff;
 	border: 3px solid;
 	margin: 5px;
   width: 50%;
   word-wrap: break-word;
+}
+
+.Thread-ul {
+	list-style-type: none;
+}
+
+.Thread-li {
+	background-color: #ffff;
+	border: 3px solid;
+	word-wrap: break-word;
+	width: 50%;
+	margin: 5px;
 }
 
 input {
@@ -45,8 +57,9 @@ span {
 }
 
 .Content-input-wrapper {
-  position: absolute;
-  right: 1%;
+  position: fixed;
+	bottom: 10%;
+  right: 5%;
   width: 30%;
 }
 
@@ -63,3 +76,4 @@ textarea {
 .Thread-Content-List {
 	text-align: left;
 }
+

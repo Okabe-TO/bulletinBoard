@@ -13,7 +13,7 @@ function Thread() {
   /**
 	 * ある掲示板のスレッドの内容をGET
 	 */
-	const [threadContent, setThreadContent] = useState([])
+	const [threadContent, setThreadContent] = useState( {id: '', posts: [{id: '', post: ''}]} )
 	async function fetchData() {
 		try {
 			const res = await axios.get(`threads/${id}/posts?offest=0`)
@@ -55,38 +55,27 @@ function Thread() {
         Link to Home
       </Link>
 
-			<div className="Thread-Content-List" loading="lazy">
-				<ul>
+			<div className="Thread-Content-List">
+				<ul className="Thread-ul">
 					{
-						(threadContent.posts).map((data, index) => (
-							<li key={index} value={data.post} >
+						// useEffectより先にmapが実行されるため，
+						// 三項演算子"?"を使い，postsがnullの時.map以降を実行しない
+						(threadContent.posts)?.map((data, index) => (
+							<li key={index} value={data.post} className="Thread-li">
 								{data.post}
 							</li>
 						))
 					}
 				</ul>
 			</div>
-      <div className="Content-input-wrapper">
-        <p>{content}</p>
-        <div className="input">
-          <textarea value={content} onChange={handleChange} />
-        </div>
-        <button className="ThreadButton" onClick={ postData }>送信</button>
-      </div>
+			<div className="Content-input-wrapper">
+				<div className="input">
+					<textarea value={content} onChange={handleChange} />
+				</div>
+				<button className="ThreadButton" onClick={postData}>送信</button>
+			</div>
     </div>
   )
 }
 
 export default Thread
-
-/*
-				<ul>
-					{
-						(threadContent.posts).map((data, index) => (
-							<li key={index} value={data.post} >
-								{data.post}
-							</li>
-						))
-					}
-				</ul>
-*/

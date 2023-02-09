@@ -16,7 +16,6 @@ function Home() {
 			try {
 				const res = await axios.get(requests.fetchThread)
 				setThreads(res.data)
-				console.log(res.data)
 			} catch (error) {
 				console.log(error)
 			}
@@ -30,10 +29,10 @@ function Home() {
 				スレッド一覧
 			</div>
 			<div className='ThreadList'>
-				<ul >
+				<ul className="Home-ul">
 					{
 						threads.map((data, index) => (
-							<li key={index} value={data.title} >
+							<li key={index} value={data.title} className="Home-li">
 								{ data.title } <Link to={`/thread/${data.id}`}>→</Link>
 							</li>
 						))
