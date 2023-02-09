@@ -2,7 +2,7 @@ import React from "react";
 import axios from "./axios";
 import { useState, useEffect } from 'react';
 import requests from "./Request";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 
 function Home() {
@@ -13,14 +13,13 @@ function Home() {
 	useEffect(() => {
 		async function fetchData() {
     	// fetchThread: `threads?offest=0`
-			await axios.get(requests.fetchThread)
-			.then((response) => {
-				setThreads(response.data)
-				console.log(response.data)
-			})
-			.catch((error) => {
+			try {
+				const res = await axios.get(requests.fetchThread)
+				setThreads(res.data)
+				console.log(res.data)
+			} catch (error) {
 				console.log(error)
-			})
+			}
 		}
 		fetchData()
 	}, [])
@@ -33,9 +32,9 @@ function Home() {
 			<div className='ThreadList'>
 				<ul >
 					{
-						threads.map((data, id) => (
-							<li key={id} value={data.title} > 
-								{ data.title } <Link to={`/thread/:${id}`}>→</Link>
+						threads.map((data, index) => (
+							<li key={index} value={data.title} >
+								{ data.title } <Link to={`/thread/${data.id}`}>→</Link>
 							</li>
 						))
 					}

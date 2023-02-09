@@ -11,7 +11,6 @@ function NewThread() {
 	// イベント
 	const handleChange = (e) => {
 		setNewThreadName(e.target.value)
-		console.log(newThreadName)
 	}
 	// POST
 	async function postData() {

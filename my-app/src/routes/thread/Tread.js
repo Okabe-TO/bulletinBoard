@@ -1,32 +1,32 @@
 import React from "react";
 import axios from "../axios";
 import { useState, useEffect } from 'react';
-import requests from "../Request";
+//import requests from "../Request";
 import { Link, useParams } from "react-router-dom";
 
 function Thread() {
   /**
    * スレッドのid取得
    */
-  let {id} = useParams();
+  let {id} = useParams()
 
   /**
 	 * ある掲示板のスレッドの内容をGET
 	 */
 	const [threadContent, setThreadContent] = useState([])
-	useEffect(() => {
-		async function fetchData() {
-    	// fetchThread: `threads?offest=0`
-			await axios.get(requests.fetchThread)
-			.then((response) => {
-				setThreadContent(response.data)
-				console.log(response.data)
-			})
-			.catch((error) => {
-				console.log(error)
-			})
+	async function fetchData() {
+		try {
+			const res = await axios.get(`threads/${id}/posts?offest=0`)
+			setThreadContent(res.data)
+			console.log("<<< res.data >>>")
+			console.log(res.data)
+		} catch (error) {
+			console.log(error)
 		}
+	}
+	useEffect(() => {
 		fetchData()
+		// eslint-disable-next-line
 	}, [])
 
   /**
@@ -36,20 +36,17 @@ function Thread() {
 	// イベント
 	const handleChange = (e) => {
 		setContent(e.target.value)
-		console.log(content)
 	}
 	// POST
 	async function postData() {
-		await axios.post(requests.postNewThread, {
-        string: content
-      })
-			.then((response) => {
-				console.log(response.data)
-			})
-			.catch((error) => {
-				console.log(error)
-			})
-    }
+		try {
+			const res = await axios.post(`threads/${id}/posts`, { post: content })
+			console.log(res.data)
+			fetchData()
+		} catch (error) {
+			console.log(error)
+		}
+  }
 
 
   return(
@@ -57,15 +54,39 @@ function Thread() {
       <Link to="/" className='Link-to-Home'>
         Link to Home
       </Link>
-      <div className="Content-wrapper">
+
+			<div className="Thread-Content-List" loading="lazy">
+				<ul>
+					{
+						(threadContent.posts).map((data, index) => (
+							<li key={index} value={data.post} >
+								{data.post}
+							</li>
+						))
+					}
+				</ul>
+			</div>
+      <div className="Content-input-wrapper">
         <p>{content}</p>
         <div className="input">
           <textarea value={content} onChange={handleChange} />
         </div>
-        <button className="ThreadButton">送信</button>
+        <button className="ThreadButton" onClick={ postData }>送信</button>
       </div>
     </div>
   )
 }
 
 export default Thread
+
+/*
+				<ul>
+					{
+						(threadContent.posts).map((data, index) => (
+							<li key={index} value={data.post} >
+								{data.post}
+							</li>
+						))
+					}
+				</ul>
+*/

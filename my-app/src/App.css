@@ -44,7 +44,7 @@ span {
   margin: 3%;
 }
 
-.Content-wrapper {
+.Content-input-wrapper {
   position: absolute;
   right: 1%;
   width: 30%;
@@ -58,4 +58,8 @@ textarea {
 .ThreadButton {
   height: 50px;
   width: 100%;
+}
+
+.Thread-Content-List {
+	text-align: left;
 }
